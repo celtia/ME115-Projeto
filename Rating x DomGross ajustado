@@ -1,0 +1,16 @@
+load("C:/Trabalhos Unicamp/ME115 Teste/filmes2005")
+
+
+media_votos <- mean(filmesIMDB$imdbVotes)
+
+votos_maior <- subset(filmesIMDB, filmesIMDB$imdbVotes >= media_votos)
+
+
+
+mean(votos_maior$imdbRating)
+
+plot <- votos_maior[,c(17,29)] ## Precisa tirar NA's
+ 
+
+library(ggplot2)
+ggplot(plot, aes(x = imdbRating, y = filmeDomGross, )) + geom_point() ## Falta ordenar 
