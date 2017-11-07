@@ -1,5 +1,6 @@
 load("C:/Trabalhos Unicamp/ME115 Teste/filmes2005")
 
+filmesIMDB$filmeDomGross <- as.numeric(gsub(",","",filmesIMDB$filmeDomGross))/1000000 ## Ajustando para numérico em milhoes
 
 media_votos <- mean(filmesIMDB$imdbVotes)
 
@@ -9,8 +10,12 @@ votos_maior <- subset(filmesIMDB, filmesIMDB$imdbVotes >= media_votos)
 
 mean(votos_maior$imdbRating)
 
-plot <- votos_maior[,c(17,29)] ## Precisa tirar NA's
- 
+plot <- votos_maior[,c(17,29)]
+
+
+plot <- na.omit(plot) 
 
 library(ggplot2)
-ggplot(plot, aes(x = imdbRating, y = filmeDomGross, )) + geom_point() ## Falta ordenar 
+ggplot(plot, aes(x = imdbRating, y = filmeDomGross, )) + geom_point() ## Ajustar cores para cada intervalo
+
+cor(x = plot$imdbRating, y = plot$filmeDomGross)
